@@ -169,6 +169,3 @@ console.time('Execution time');
 console.log(palindrom(naturlNums));
 console.timeEnd('Execution time');
 
-
-
-
