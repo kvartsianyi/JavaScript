@@ -196,7 +196,7 @@ function goHome(isRoadClear) {
 function code(isElectricity) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            isElectricity ? resolve('Codes...') : reject('I can`t! No electricity!');
+            isElectricity ? resolve('Codes...') : reject('I can`t coding! No electricity!');
         }, 2000);
     });
 }
@@ -222,17 +222,66 @@ function sleep(isPillow) {
 // promise
 //wakeUp => eat => goToWork => coffeeBreak => eat => goHome => eat => code => watchFilm => sleep
 
-wakeUp(false)
+wakeUp(true)
     .then(value => {
+        console.log('Wake up:');
         console.log(value);
-        eat(true)
-            .then(value => {
-                console.log(value);
-            }).catch(reason => console.log(reason));
-    }).catch(reason => console.log(reason));
 
+        return eat(value)
+    })
+    .then(value => {
+        console.log('Eat:');
+        console.log(value);
 
+        return goToWork(value);
+    })
+    .then(value => {
+        console.log('Go to work:');
+        console.log(value);
 
+        return coffeeBreak(value);
+    })
+    .then(value => {
+        console.log('Coffee break:');
+        console.log(value);
+
+        return eat(value);
+    })
+    .then(value => {
+        console.log('Eat:');
+        console.log(value);
+
+        return goHome(value);
+    })
+    .then(value => {
+        console.log('Go home');
+        console.log(value);
+
+        return eat(value);
+    })
+    .then(value => {
+        console.log('Eat:');
+        console.log(value);
+
+        return code(false);
+    })
+    .then(value => {
+        console.log('Code:');
+        console.log(value);
+
+        return watchFilm(value);
+    })
+    .then(value => {
+        console.log('Watch film:');
+        console.log(value);
+
+        return sleep(value);
+    })
+    .then(value => {
+        console.log('Sleep:');
+        console.log(value)
+    })
+    .catch(reason => console.log(`Day is crashed: ${reason}`));
 
 
 
