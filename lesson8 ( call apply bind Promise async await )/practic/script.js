@@ -151,7 +151,141 @@
 // });
 
 
-console.log('-----------Promise-----------');
+// console.log('-----------Promise-----------');
+//
+// function wakeUp(isWakeUp) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isWakeUp ? resolve('Good morning!') : reject('You are fired from work!');
+//         }, 2000);
+//     });
+// }
+//
+// function eat(isEat) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isEat ? resolve('Bon appetit!') : reject('You died!');
+//         }, 1000);
+//     });
+// }
+//
+// function goToWork(isRoadClear) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isRoadClear ? resolve('I`m at work!') : reject('I was late for work!');
+//         }, 3000);
+//     });
+// }
+//
+// function coffeeBreak(isBreak) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isBreak ? resolve('Delicious coffee!') : reject('I`m tired!');
+//         }, 500);
+//     });
+// }
+//
+// function goHome(isRoadClear) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isRoadClear ? resolve('I`m home!') : reject('I`m in the mash!');
+//         }, 3000);
+//     });
+// }
+//
+// function code(isElectricity) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isElectricity ? resolve('Codes...') : reject('I can`t coding! No electricity!');
+//         }, 2000);
+//     });
+// }
+//
+// function watchFilm(isGoodFilm) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isGoodFilm ? resolve('Film is good!') : reject('There are no good films!');
+//         }, 5000);
+//     });
+// }
+//
+// function sleep(isPillow) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             isPillow ? resolve('Sleep...') : reject('I can`t sleep without pillow!');
+//         }, 2000);
+//     });
+// }
+//
+//
+//
+// // promise
+// //wakeUp => eat => goToWork => coffeeBreak => eat => goHome => eat => code => watchFilm => sleep
+//
+// wakeUp(true)
+//     .then(value => {
+//         console.log('Wake up:');
+//         console.log(value);
+//
+//         return eat(value)
+//     })
+//     .then(value => {
+//         console.log('Eat:');
+//         console.log(value);
+//
+//         return goToWork(value);
+//     })
+//     .then(value => {
+//         console.log('Go to work:');
+//         console.log(value);
+//
+//         return coffeeBreak(value);
+//     })
+//     .then(value => {
+//         console.log('Coffee break:');
+//         console.log(value);
+//
+//         return eat(value);
+//     })
+//     .then(value => {
+//         console.log('Eat:');
+//         console.log(value);
+//
+//         return goHome(value);
+//     })
+//     .then(value => {
+//         console.log('Go home');
+//         console.log(value);
+//
+//         return eat(value);
+//     })
+//     .then(value => {
+//         console.log('Eat:');
+//         console.log(value);
+//
+//         return code(false);
+//     })
+//     .then(value => {
+//         console.log('Code:');
+//         console.log(value);
+//
+//         return watchFilm(value);
+//     })
+//     .then(value => {
+//         console.log('Watch film:');
+//         console.log(value);
+//
+//         return sleep(value);
+//     })
+//     .then(value => {
+//         console.log('Sleep:');
+//         console.log(value)
+//     })
+//     .catch(reason => console.log(`Day was crashed: ${reason}`));
+
+
+
+console.log('-----------Async Await-----------');
 
 function wakeUp(isWakeUp) {
     return new Promise((resolve, reject) => {
@@ -217,80 +351,49 @@ function sleep(isPillow) {
     });
 }
 
+// Async Await (ES 8)
+async function myDay() {
+    //wakeUp => eat => goToWork => coffeeBreak => eat => goHome => eat => code => watchFilm => sleep
+    try{
+        let wake = await wakeUp(true);
+        console.log(wake);
+
+        let breakfast = await eat(wake);
+        console.log(breakfast);
+
+        let goWork = await goToWork(breakfast);
+        console.log(goWork);
+
+        let coffee = await coffeeBreak(goWork);
+        console.log(coffee);
+
+        let eatLunch = await eat(coffee);
+        console.log(eatLunch);
+
+        let home = await goHome(eatLunch);
+        console.log(home);
+
+        let eatSupper = await eat(home);
+        console.log(eatSupper);
+
+        let coding = await code(false);
+        console.log(coding);
+
+        let film = await watchFilm(coding);
+        console.log(film);
+
+        let sleeping = await sleep(film);
+        console.log(sleeping);
+    }
+    catch (e) {
+        console.log(`Day was crashed: ${e}`);
+    }
 
 
-// promise
-//wakeUp => eat => goToWork => coffeeBreak => eat => goHome => eat => code => watchFilm => sleep
+    console.log(22);
+}
 
-wakeUp(true)
-    .then(value => {
-        console.log('Wake up:');
-        console.log(value);
-
-        return eat(value)
-    })
-    .then(value => {
-        console.log('Eat:');
-        console.log(value);
-
-        return goToWork(value);
-    })
-    .then(value => {
-        console.log('Go to work:');
-        console.log(value);
-
-        return coffeeBreak(value);
-    })
-    .then(value => {
-        console.log('Coffee break:');
-        console.log(value);
-
-        return eat(value);
-    })
-    .then(value => {
-        console.log('Eat:');
-        console.log(value);
-
-        return goHome(value);
-    })
-    .then(value => {
-        console.log('Go home');
-        console.log(value);
-
-        return eat(value);
-    })
-    .then(value => {
-        console.log('Eat:');
-        console.log(value);
-
-        return code(false);
-    })
-    .then(value => {
-        console.log('Code:');
-        console.log(value);
-
-        return watchFilm(value);
-    })
-    .then(value => {
-        console.log('Watch film:');
-        console.log(value);
-
-        return sleep(value);
-    })
-    .then(value => {
-        console.log('Sleep:');
-        console.log(value)
-    })
-    .catch(reason => console.log(`Day is crashed: ${reason}`));
-
-
-
-
-
-
-
-
-
+myDay();
 
 
 
