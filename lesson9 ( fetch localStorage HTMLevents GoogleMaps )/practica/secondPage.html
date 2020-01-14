@@ -14,6 +14,7 @@
         }
         .gallery{
             display: flex;
+            align-items: center;
             justify-content: center;
         }
         .photos{
@@ -84,6 +85,8 @@ let messages = document.getElementsByTagName('p');
 
     let photosBox = document.getElementById('photos');
     let photos = photosBox.getElementsByTagName('img');
+    let leftBtn = document.getElementById('left_arrow');
+    let rightBtn = document.getElementById('right_arrow');
     let currPhoto = 0;
 
 
@@ -91,29 +94,39 @@ let messages = document.getElementsByTagName('p');
         photos[i].style.display = 'none';
     }
 
-    let leftBtn = document.getElementById('left_arrow');
-    let rightBtn = document.getElementById('right_arrow');
+
+    // set default photo
+    photos[currPhoto].style.display = 'block';
 
     leftBtn.onclick = () => {
         photos[currPhoto].style.display = 'none';
 
+        currPhoto--;
+        if(currPhoto < 0)
+            currPhoto = photos.length - 1;
+
+        photos[currPhoto].style.display = 'block';
+    };
+
+    rightBtn.onclick = () => {
+        photos[currPhoto].style.display = 'none';
+
         currPhoto++;
+        if(currPhoto > photos.length - 1)
+            currPhoto = 0;
 
         photos[currPhoto].style.display = 'block';
     };
 
 
 
-
-
-
-
     // 8 Создать функцию которая принимает какой-либо элемент DOM-структуры .Функция создает в боди 2 кнопки (назад/вперед)
     // при нажатии вперед, вы переходите к дочернему элементу, при еще одном нажатии на "вперед", вы переходите к следующему дочернему элементу (лежащему на одном уровне)
     // НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
-    //     Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
-    //
-    //
+    // Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
+
+
+
     // 9 Створити 4 инпута. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк, четвертий -кнопка
     // при натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
     //
