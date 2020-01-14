@@ -1,0 +1,253 @@
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Font weights */
+
+.font-weight-100 {
+  font-weight: 100;
+}
+
+.font-weight-200 {
+  font-weight: 200;
+}
+
+.font-weight-300 {
+  font-weight: 300;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.font-weight-700 {
+  font-weight: 700;
+}
+
+/* #Font weights */
+
+@media screen and (max-width: 1200px) {
+  .text-xl-left {
+    text-align: left;
+  }
+
+  .text-xl-center {
+    text-align: center;
+  }
+
+  .text-xl-right {
+    text-align: right;
+  }
+
+  .font-weight-xl-100 {
+    font-weight: 100;
+  }
+
+  .font-weight-xl-200 {
+    font-weight: 200;
+  }
+
+  .font-weight-xl-300 {
+    font-weight: 300;
+  }
+
+  .font-weight-xl-400 {
+    font-weight: 400;
+  }
+
+  .font-weight-xl-500 {
+    font-weight: 500;
+  }
+
+  .font-weight-xl-600 {
+    font-weight: 600;
+  }
+
+  .font-weight-xl-700 {
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .text-lg-left {
+    text-align: left;
+  }
+
+  .text-lg-center {
+    text-align: center;
+  }
+
+  .text-lg-right {
+    text-align: right;
+  }
+
+  .font-weight-lg-100 {
+    font-weight: 100;
+  }
+
+  .font-weight-lg-200 {
+    font-weight: 200;
+  }
+
+  .font-weight-lg-300 {
+    font-weight: 300;
+  }
+
+  .font-weight-lg-400 {
+    font-weight: 400;
+  }
+
+  .font-weight-lg-500 {
+    font-weight: 500;
+  }
+
+  .font-weight-lg-600 {
+    font-weight: 600;
+  }
+
+  .font-weight-lg-700 {
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .text-md-left {
+    text-align: left;
+  }
+
+  .text-md-center {
+    text-align: center;
+  }
+
+  .text-md-right {
+    text-align: right;
+  }
+
+  .font-weight-md-100 {
+    font-weight: 100;
+  }
+
+  .font-weight-md-200 {
+    font-weight: 200;
+  }
+
+  .font-weight-md-300 {
+    font-weight: 300;
+  }
+
+  .font-weight-md-400 {
+    font-weight: 400;
+  }
+
+  .font-weight-md-500 {
+    font-weight: 500;
+  }
+
+  .font-weight-md-600 {
+    font-weight: 600;
+  }
+
+  .font-weight-md-700 {
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .text-sm-left {
+    text-align: left;
+  }
+
+  .text-sm-center {
+    text-align: center;
+  }
+
+  .text-sm-right {
+    text-align: right;
+  }
+
+  .font-weight-sm-100 {
+    font-weight: 100;
+  }
+
+  .font-weight-sm-200 {
+    font-weight: 200;
+  }
+
+  .font-weight-sm-300 {
+    font-weight: 300;
+  }
+
+  .font-weight-sm-400 {
+    font-weight: 400;
+  }
+
+  .font-weight-sm-500 {
+    font-weight: 500;
+  }
+
+  .font-weight-sm-600 {
+    font-weight: 600;
+  }
+
+  .font-weight-sm-700 {
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .text-xs-left {
+    text-align: left;
+  }
+
+  .text-xs-center {
+    text-align: center;
+  }
+
+  .text-xs-right {
+    text-align: right;
+  }
+
+  .font-weight-xs-100 {
+    font-weight: 100;
+  }
+
+  .font-weight-xs-200 {
+    font-weight: 200;
+  }
+
+  .font-weight-xs-300 {
+    font-weight: 300;
+  }
+
+  .font-weight-xs-400 {
+    font-weight: 400;
+  }
+
+  .font-weight-xs-500 {
+    font-weight: 500;
+  }
+
+  .font-weight-xs-600 {
+    font-weight: 600;
+  }
+
+  .font-weight-xs-700 {
+    font-weight: 700;
+  }
+}

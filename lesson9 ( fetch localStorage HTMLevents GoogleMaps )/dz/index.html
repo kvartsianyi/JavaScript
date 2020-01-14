@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson9</title>
+    <link rel="stylesheet" href="CSS%20lib/style.css">
+
+    <style>
+        .bg-coral {
+            background-color: coral;
+        }
+
+        .bg-lightcoral {
+            background-color: lightcoral;
+        }
+
+        input, textarea {
+            border: none;
+            padding: 1rem;
+            font-size: 1.5rem;
+            border-radius: 2rem;
+        }
+
+        button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            border-radius: 2rem;
+        }
+
+        th, td {
+            border: 1px solid grey;
+            padding: 2rem;
+        }
+
+        .square {
+            width: 200px;
+            height: 200px;
+            background-color: darkorange;
+        }
+
+        nav ul {
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav ul li {
+            padding: 5px;
+            margin: 2px;
+            background-color: lightcoral;
+        }
+
+        .subitem {
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="text" class="simple_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+
+<div class="col-12 my-4 d-flex flex-direction-column">
+    <div class="col-12 d-flex justify-content-center align-items-center bg-coral">
+        <form id="formOne" class="formOne d-flex flex-direction-column col-6 align-items-center" action="#">
+            <input class="m-3" type="text" value="lorem@gmail.com" placeholder="Email">
+            <textarea class="m-3 col-8" placeholder="Text...">Lorem ipsum</textarea>
+        </form>
+    </div>
+    <div class="col-12 mt-3 d-flex justify-content-center align-items-center bg-lightcoral">
+        <form id="formTwo" class="formTwo d-flex flex-direction-column col-6 align-items-center" action="#">
+            <input class="m-3" type="text" value="Lorem" placeholder="Name">
+            <input class="m-3" type="text" value="Ipsum" placeholder="Password">
+        </form>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <button id="twoFormsBtn" class="col-4 m-3 py-4">Show in console</button>
+    </div>
+</div>
+
+
+<div id="table" class="col-12 my-4 d-flex flex-direction-column align-items-center">Table</div>
+
+<div id="textToHide" class="col-12 bg-lightcoral p-5">
+    <form action="#">
+        <input id="toValidate" type="text" placeholder="Text...">
+    </form>
+</div>
+
+
+<div class="col-12 d-flex justify-content-center">
+    <button id="btnHider" class="col-4 m-3 py-4">Hide text</button>
+</div>
+
+<div class="col-12 d-flex justify-content-center">
+    <button id="btnDestructor" class="col-4 m-3 py-4">Button self-destructor</button>
+</div>
+
+<div class="col-12 bg-coral p-5">
+    <form action="#">
+        <input id="age" type="number" placeholder="Your age">
+        <button id="btnAgeValidation" class="col-2 m-3 py-3">Check</button>
+    </form>
+</div>
+
+<div>
+    <div id="square" class="square m-4"></div>
+    <form action="#">
+        <input id="range" type="range" min="200" max="600" value="200">
+        <span id="squareSize"></span>
+    </form>
+</div>
+
+
+<nav>
+    <ul id="navigation">
+        <li><a href="#">Item 1</a></li>
+        <li><a href="#">Item 2</a></li>
+        <li>
+            <a href="#">Item 3</a>
+            <ul class="subitem">
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
+                <li><a href="#">Subitem 3</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Item 4</a></li>
+        <li><a href="#">Item 5</a></li>
+    </ul>
+</nav>
+
+<script>
+    // // - створити блок з id, class та текстом в середені. Зчитати окремо цей текст за селекторів по id , class та тегу
+    // // - змінити цей текст використовуючи селектори id, class,  tag
+    //
+    // // by id
+    // let divkaId = document.getElementById('text');
+    // console.log(divkaId.textContent);
+    //
+    // // by class
+    // let divkaClass = document.getElementsByClassName('simple_text');
+    // for (const divka of divkaClass) {
+    //     console.log(divka.textContent);
+    // }
+    //
+    // // by tag
+    // let divkaTag = document.getElementsByTagName('div');
+    // //for (const divka of divkaTag) {
+    //     console.log(divkaTag[0].textContent);
+    // //}
+    //
+    // divkaId.innerText += ' + text by ID selector';
+    // for (let i = 0; i < divkaClass.length; i++) {
+    //     divkaClass[i].innerText += ' + text by CLASS selector';
+    //     divkaTag[i].innerText += ' + text by TAG selector';
+    // }
+    //
+    //
+    // // - створити функцію яка змінюватиме розміри та колір цього блоку згідно з визначиними аргументами
+    //
+    // let divConfigurator = (height, width, bgColor) => {
+    //     divkaId.style.height = `${height}px`;
+    //     divkaId.style.width = `${width}px`;
+    //     divkaId.style.backgroundColor = `rgb(${bgColor})`;
+    // };
+    //
+    // let bgColor = `${Math.random() * 255},${Math.random() * 255},${Math.random() * 255}`; // random color
+    // divConfigurator(200, 400, bgColor);
+    //
+    //
+    // // - створити дві форми , по два інпути в кожній
+    // // ствоирити кнопку при кліку на яку считується та виводиться на консоль інформація з цих форм
+    //
+    // let btn = document.getElementById('twoFormsBtn');
+    //
+    // btn.onclick = () => {
+    //     let forms = document.getElementsByTagName('form');
+    //
+    //     console.log('\n--------------------------------------------\nForms data\n\n');
+    //     for (const form of forms) {
+    //         console.log(`-----${form.id}-----`,);
+    //         for (const element of form) {
+    //             console.log(element.value);
+    //         }
+    //     }
+    // };
+    //
+    // // - Створити функцію, яка генерує таблицю, перший аргумент визначає кількість строк,
+    // //     а другий параметр визначає кліькіть ячеєк в кожній строці.
+    // //     третій параметр визначає елемент в який потрібно таблицю додати
+    //
+    // function createTable(rows, cells, element) {
+    //     let table = '<table>';
+    //
+    //     for (let i = 0; i < rows; i++) {
+    //         table += '<tr>';
+    //
+    //         for (let j = 0; j < cells; j++) {
+    //             table += '<td></td>';
+    //         }
+    //
+    //         table += '</tr>';
+    //     }
+    //     table += '</table>';
+    //
+    //     element.innerHTML += table;
+    // }
+    //
+    // let divTable = document.getElementById('table');
+    // createTable(5, 8, divTable);
+    //
+    //
+    // // - Сворити масив не цензцрних слів.
+    // //     Сворити інпут текстового типу.
+    // //     Якщо людина вводить слово і воно міститься в масиві не цензурних слів
+    // // кинути алерт з попередженням.
+    // // - Робимо попередню логіку цікавішею.
+    // //     Все те саме, але тепер потрібно перевіряти чи не містить ціле речення в собі погані слова
+    // //
+    // let badWords = ['kaka', 'shit', 'root', 'php'];
+    //
+    // let toValidate = document.getElementById('toValidate');
+    //
+    // toValidate.onchange = () => {
+    //
+    //     for (const badWord of badWords) {
+    //         if (toValidate.value.toLowerCase().includes(badWord)) {
+    //             alert('You are bad guy!');
+    //             return;
+    //             //toValidate.value = toValidate.value.replace(badWord, '***');
+    //         }
+    //     }
+    // };
+    //
+    //
+    // // 1 Используя JavaScript, сделайте так, чтобы при клике на кнопку исчезал элемент с id="text".
+    // let btnHide = document.getElementById('btnHider');
+    // let text = document.getElementById('textToHide');
+    // text.style.display = 'block';
+    //
+    // btnHide.onclick = () => {
+    //     text.style.display = text.style.display === 'block' ? 'none' : 'block';
+    // };
+    //
+    //
+    // // 2 Создайте кнопку, при клике на которую, она будет скрывать сама себя.
+    // let btnDestructor = document.getElementById('btnDestructor');
+    //
+    // btnDestructor.onclick = () => {
+    //     btnDestructor.style.display = 'none';
+    // }
+
+    // 3 створити інпут який приймає вік людини та кнопку яка підтверджує дію.
+    //     При натисканні на кнопку зчитати інформацію з інпуту та перевірити вік чи меньше він ніж 18, та повідомити про це користувача
+
+    // let btnAge = document.getElementById('btnAgeValidation');
+    // btnAge.onclick = () => {
+    //     +document.getElementById('age').value > 18 ? alert('Age is > 18') : alert('Age is < 18');
+    // };
+
+
+    // 4 Створити інпут з бігунком та блок 200*200, при переміщені бігунка блок збільшує свою ширину пропорційно.
+    //     Задати бігунку мінімальні значення в 200 максимальне в 600
+
+    let range = document.getElementById('range'); // input range
+    let square = document.getElementById('square'); // div 200x200
+    let squareSize = document.getElementById('squareSize'); //span with div size
+
+    range.oninput = () => {
+        let {value: size} = range;
+
+        squareSize.innerText = `${size}px`;
+
+        square.style.width = `${size}px`;
+        square.style.height = `${size}px`;
+    };
+
+
+    // 5 Создайте меню, которое раскрывается/сворачивается при клике:
+
+    console.log(22)
+    let menu = document.getElementById('navigation');
+    let li = menu.getElementsByTagName('li');
+
+
+    for (let i = 0; i < li.length; i++) {
+        li[i].onclick = () => {
+            let submenu = li[i].getElementsByTagName('ul');
+
+            for (let j = 0; j < submenu.length; j++) {
+                submenu[j].style.display = submenu[j].style.display === 'none' ? 'block' : 'none';
+            }
+        };
+    }
+
+
+    // menu[i].onclick = () => {
+    //    let submenu = menu[i].getElementsByClassName('subitem');
+    //    submenu.style.display = 'block';
+    // };
+    console.log(22)
+
+
+</script>
+</body>
+</html>

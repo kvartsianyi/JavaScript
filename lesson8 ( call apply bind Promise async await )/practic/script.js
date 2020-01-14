@@ -394,6 +394,3 @@ async function myDay() {
 }
 
 myDay();
-
-
-

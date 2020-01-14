@@ -1,0 +1,35 @@
+.container {
+  max-width: var(--container-defaul);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    max-width: var(--container-lg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    max-width: var(--container-sm);
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .container {
+    max-width: var(--container-xs);
+  }
+}
