@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .left-arrow, .right-arrow{
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background-color: black;
+        }
+        .gallery{
+            display: flex;
+            justify-content: center;
+        }
+        .photos{
+            display: flex;
+            justify-content: center;
+        }
+        .photos img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+    </style>
+</head>
+<body>
+<div id="messages">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi cupiditate debitis deleniti,
+        dolores enim et perferendis quae tempora totam! Amet animi etionem modi nam nulla rerum suscipit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi cupiditate debitis deleniti,
+        dolores enim et perferendis quae tempora  excepturi exercitationem modi nam nulla rerum suscipit.</p>
+    <p>Lorem ipsum dolor sit amet, codebitis deleniti,
+        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum suscipit.</p>
+    <p>Lorem ipsum dolor sit amet, consecteturdeleniti,
+        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum suscipit.</p>
+    <p>Lorem ipsum dol animi cupiditate debitis deleniti,
+        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum suscipit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi cupiditate debitis deleniti,
+        dolores enim et perferi exercitationem modi nam nulla rerum suscipit.</p>
+</div>
+
+
+<div class="gallery">
+    <div id="left_arrow" class="left-arrow"></div>
+    <div id="photos" class="photos">
+        <img src="img/blog/blog_1.png" alt="">
+        <img src="img/blog/blog_2.png" alt="">
+        <img src="img/blog/blog_3.png" alt="">
+        <img src="img/blog/blog_4.png" alt="">
+    </div>
+    <div id="right_arrow" class="right-arrow"></div>
+</div>
+
+
+
+
+<script>
+    // 6 Есть список сообщений. Добавьте каждому сообщению по кнопке для его скрытия.
+let messagesBox = document.getElementById('messages');
+let messages = document.getElementsByTagName('p');
+
+
+    for (let i = 0; i < messages.length; i++) {
+        console.log(22);
+        messages[i].innerHTML += '<br><button>Delete</button><br><br>';
+    }
+
+
+    let buttons = document.getElementsByTagName('button');
+
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = () => {
+            buttons[i].parentElement.style.display = 'none';
+        };
+    }
+
+    // 7 Напишите «Карусель» – ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.
+
+    let photosBox = document.getElementById('photos');
+    let photos = photosBox.getElementsByTagName('img');
+    let currPhoto = 0;
+
+
+    for (let i = 0; i < photos.length; i++) {
+        photos[i].style.display = 'none';
+    }
+
+    let leftBtn = document.getElementById('left_arrow');
+    let rightBtn = document.getElementById('right_arrow');
+
+    leftBtn.onclick = () => {
+        photos[currPhoto].style.display = 'none';
+
+        currPhoto++;
+
+        photos[currPhoto].style.display = 'block';
+    };
+
+
+
+
+
+
+
+    // 8 Создать функцию которая принимает какой-либо элемент DOM-структуры .Функция создает в боди 2 кнопки (назад/вперед)
+    // при нажатии вперед, вы переходите к дочернему элементу, при еще одном нажатии на "вперед", вы переходите к следующему дочернему элементу (лежащему на одном уровне)
+    // НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
+    //     Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
+    //
+    //
+    // 9 Створити 4 инпута. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк, четвертий -кнопка
+    // при натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
+    //
+    //     Після побудови таблички, при подвійному натисканні на будь-яку ячейку з'являється новий інпут, в якому з'являється поточне значення ячейки на яку ви натискали.
+    //     Змінюючи інформацію в цьому інпуті, ви змінюєте інформацію в самій ячейці
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

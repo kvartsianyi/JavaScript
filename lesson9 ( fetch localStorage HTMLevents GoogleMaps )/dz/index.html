@@ -123,7 +123,13 @@
                 <li><a href="#">Subitem 3</a></li>
             </ul>
         </li>
-        <li><a href="#">Item 4</a></li>
+        <li>
+            <a href="#">Item 4</a>
+            <ul class="subitem">
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
+            </ul>
+        </li>
         <li><a href="#">Item 5</a></li>
     </ul>
 </nav>
@@ -277,27 +283,24 @@
 
     // 5 Создайте меню, которое раскрывается/сворачивается при клике:
 
-    console.log(22)
     let menu = document.getElementById('navigation');
     let li = menu.getElementsByTagName('li');
 
 
     for (let i = 0; i < li.length; i++) {
-        li[i].onclick = () => {
-            let submenu = li[i].getElementsByTagName('ul');
+        let submenu = li[i].getElementsByTagName('ul');
 
+        for (let j = 0; j < submenu.length; j++) {
+            submenu[j].style.display = 'none';
+        }
+
+
+        li[i].onclick = () => {
             for (let j = 0; j < submenu.length; j++) {
                 submenu[j].style.display = submenu[j].style.display === 'none' ? 'block' : 'none';
             }
         };
     }
-
-
-    // menu[i].onclick = () => {
-    //    let submenu = menu[i].getElementsByClassName('subitem');
-    //    submenu.style.display = 'block';
-    // };
-    console.log(22)
 
 
 </script>
