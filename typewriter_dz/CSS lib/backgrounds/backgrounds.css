@@ -1,0 +1,15 @@
+.bg-no-repeat {
+  background-repeat: no-repeat;
+}
+
+.bg-position-center {
+  background-position: center center;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-contain {
+  background-size: contain;
+}

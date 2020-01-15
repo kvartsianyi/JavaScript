@@ -1,0 +1,8 @@
+:root {
+  --container-xs: 100%;
+  --container-sm: 576px;
+  --container-md: 768px;
+  --container-lg: 992px;
+  --container-xl: 1200px;
+  --container-defaul: 1200px;
+}

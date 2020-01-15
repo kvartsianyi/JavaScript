@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Typewriter</title>
+    <link rel="stylesheet" href="CSS%20lib/style.css">
+
+    <style>
+        button, input {
+            border-radius: 5rem;
+        }
+
+        #typewriter {
+            background-color: coral;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="col-4 p-4 d-flex flex-direction-column">
+    <form class="col-12" action="#">
+        <input id="strToPrint" class="col-12 py-2" type="text" value="Hello World!!!" placeholder="Text to print...">
+    </form>
+    <button class="py-2 my-3" id="starter">Print</button>
+</div>
+
+<div id="typewriter" class="col-4 p-2 text-center"></div>
+
+
+<script>
+    // Таска така. Вам треба зробити друкарську машинку.
+    // У вас є інпутик з текстом і кнопочка ОК.
+    // В той інпут вводите якийсь текст і тицькаєте на кнопочку.
+    //
+    // Після того як ви тицьнули на екрані має почати друкуватись той текст який ви ввели в інпутик.
+    // Друкуєтсья він по 1 букві з затримкою від 0,3 до 1 секнди. Симулюючи реальне друкування юзером цього тексту.
+    // Важливо!!
+    // Затримка в друкуванні для кожної букви має бути різна!
+    // setTimeout з хардкорним числом не рахується )
+    // Число має бути від 0,3 до 1 різне для кожної буки
+
+    let btn = document.getElementById('starter');
+    let div = document.getElementById('typewriter');
+
+
+    btn.onclick = () => {
+        let strArr = document.getElementById('strToPrint').value.split('');
+
+        div.innerHTML = '';
+
+        let interval = setInterval(() => {
+            strArr.length > 0 ? div.innerHTML += strArr.shift() : clearInterval(interval);
+        }, (Math.random() * 700) + 300);
+    };
+</script>
+</body>
+</html>
