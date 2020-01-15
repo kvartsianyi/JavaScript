@@ -5,7 +5,7 @@
     <title>Title</title>
 
     <style>
-        .left-arrow, .right-arrow{
+        .left-arrow, .right-arrow {
             width: 50px;
             height: 50px;
             border: 2px solid white;
@@ -14,20 +14,28 @@
             cursor: pointer;
             background-color: black;
         }
-        .gallery{
+
+        .gallery {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .photos{
+
+        .photos {
             display: flex;
             justify-content: center;
         }
+
         .photos img {
             width: 300px;
             height: 200px;
             object-fit: cover;
             object-position: center;
+        }
+
+        th, td {
+            border: 1px solid gray;
+            padding: 1rem;
         }
 
     </style>
@@ -37,13 +45,16 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi cupiditate debitis deleniti,
         dolores enim et perferendis quae tempora totam! Amet animi etionem modi nam nulla rerum suscipit.</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi cupiditate debitis deleniti,
-        dolores enim et perferendis quae tempora  excepturi exercitationem modi nam nulla rerum suscipit.</p>
+        dolores enim et perferendis quae tempora excepturi exercitationem modi nam nulla rerum suscipit.</p>
     <p>Lorem ipsum dolor sit amet, codebitis deleniti,
-        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum suscipit.</p>
+        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum
+        suscipit.</p>
     <p>Lorem ipsum dolor sit amet, consecteturdeleniti,
-        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum suscipit.</p>
+        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum
+        suscipit.</p>
     <p>Lorem ipsum dol animi cupiditate debitis deleniti,
-        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum suscipit.</p>
+        dolores enim et perferendis quae tempora totam! Amet animi error excepturi exercitationem modi nam nulla rerum
+        suscipit.</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi cupiditate debitis deleniti,
         dolores enim et perferi exercitationem modi nam nulla rerum suscipit.</p>
 </div>
@@ -60,13 +71,25 @@
     <div id="right_arrow" class="right-arrow"></div>
 </div>
 
+<div>
+    <form action="#">
+        <input id="rowsCount" type="number" value="2">
+        <input id="cellsCount" type="number" value="3">
+        <input id="cellValue" type="text" value="okten">
+        <button id="createTable">Create table</button>
+    </form>
 
+    <div id="tableWrapp"></div>
+    <form action="#">
+        <input id="changeValue" type="text" style="display: none">
+    </form>
+</div>
 
 
 <script>
     // 6 Есть список сообщений. Добавьте каждому сообщению по кнопке для его скрытия.
-let messagesBox = document.getElementById('messages');
-let messages = document.getElementsByTagName('p');
+    let messagesBox = document.getElementById('messages');
+    let messages = document.getElementsByTagName('p');
 
 
     for (let i = 0; i < messages.length; i++) {
@@ -82,6 +105,7 @@ let messages = document.getElementsByTagName('p');
             buttons[i].parentElement.style.display = 'none';
         };
     }
+
 
     // 7 Напишите «Карусель» – ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.
 
@@ -105,7 +129,7 @@ let messages = document.getElementsByTagName('p');
         photos[currPhoto].style.display = 'none';
 
         currPhoto--;
-        if(currPhoto < 0)
+        if (currPhoto < 0)
             currPhoto = photos.length - 1;
 
         photos[currPhoto].style.display = 'block';
@@ -115,12 +139,11 @@ let messages = document.getElementsByTagName('p');
         photos[currPhoto].style.display = 'none';
 
         currPhoto++;
-        if(currPhoto > photos.length - 1)
+        if (currPhoto > photos.length - 1)
             currPhoto = 0;
 
         photos[currPhoto].style.display = 'block';
     };
-
 
 
     // 8 Создать функцию которая принимает какой-либо элемент DOM-структуры .Функция создает в боди 2 кнопки (назад/вперед)
@@ -129,24 +152,69 @@ let messages = document.getElementsByTagName('p');
     // Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
 
 
-
     // 9 Створити 4 инпута. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк, четвертий -кнопка
     // при натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
-    //
-    //     Після побудови таблички, при подвійному натисканні на будь-яку ячейку з'являється новий інпут, в якому з'являється поточне значення ячейки на яку ви натискали.
-    //     Змінюючи інформацію в цьому інпуті, ви змінюєте інформацію в самій ячейці
+    // Після побудови таблички, при подвійному натисканні на будь-яку ячейку з'являється новий інпут, в якому з'являється поточне значення ячейки на яку ви натискали.
+    // Змінюючи інформацію в цьому інпуті, ви змінюєте інформацію в самій ячейці
+
+    let btnCreateTable = document.getElementById('createTable');
+
+    btnCreateTable.onclick = () => {
+        let insertTo = document.getElementById('tableWrapp');
+
+        let rowsCount = document.getElementById('rowsCount').value;
+        let cellsCount = document.getElementById('cellsCount').value;
+        let cellValue = document.getElementById('cellValue').value;
 
 
+        let table = document.createElement('table');
+        table.setAttribute('id', 'table');
+
+        //thead
+        let thead = document.createElement('thead');
+        table.appendChild(thead)
+
+        let trHead = document.createElement('tr')
+        thead.appendChild(trHead)
+        for (let i = 0; i < cellsCount; i++) {
+            let th = document.createElement('th');
+            th.innerHTML = 'head';
+            trHead.appendChild(th);
+        }
+
+        // tbody
+        let tbody = document.createElement('tbody');
+        table.appendChild(tbody)
+
+        for (let i = 0; i < rowsCount; i++) {
+            let tr = document.createElement('tr')
+            tbody.appendChild(tr);
+            for (let j = 0; j < cellsCount; j++) {
+                let td = document.createElement('td');
+                td.innerHTML = cellValue;
+
+                tr.appendChild(td)
+            }
+        }
+
+        insertTo.appendChild(table);
 
 
+        // input to change value of cell
+        let changeValueCell = document.getElementById('changeValue');
+        let tdToClick = document.getElementsByTagName('td');
 
+        for (let i = 0; i < tdToClick.length; i++) {
+            tdToClick[i].ondblclick = () => {
+                changeValueCell.style.display = 'block';
+                changeValueCell.value = tdToClick[i].textContent;
 
-
-
-
-
-
-
+                changeValueCell.oninput = () => {
+                    tdToClick[i].textContent = changeValueCell.value;
+                };
+            };
+        }
+    };
 
 
 </script>
