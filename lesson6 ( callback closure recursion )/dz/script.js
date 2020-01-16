@@ -93,3 +93,26 @@ let flatRes = flat(arr)
 console.log(arr);
 console.log(flatRes);
 
+
+
+// closure
+
+function increment() {
+    let x = 0;
+    let y = 0;
+
+
+    // функція, що повертається, ссилаєтся на змінні функції, що відпрацювала
+    return  function () {
+        return [++x, --y];
+    }
+}
+
+
+let incr = increment();
+console.log(incr());
+console.log(incr());
+console.log(incr());
+console.log(incr());
+
+
