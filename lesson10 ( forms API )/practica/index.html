@@ -61,6 +61,17 @@
 <hr>
 <br>
 
+<div>
+    <form name="taskList" action="#">
+        <textarea name="task" placeholder="Text..."></textarea>
+        <button id="saveTask">Add task</button>
+        <button id="clearTasks">Clear all</button>
+    </form>
+    <h2>Organizer</h2>
+    <div id="list">
+
+    </div>
+</div>
 
 
 <script>
@@ -178,47 +189,106 @@
     // }
     //
 
-    // - Реализуйте записную книгу, хранящую данные в локальном хранилище.
-    let saveNote = document.forms.note.saveNote;
-    let notes = JSON.parse(localStorage.getItem('notes'));
-    let noteBook = document.getElementById('notes');
-
-    // localStorage.clear();
-
-    saveNote.onclick = (ev) => {
-        ev.preventDefault();
-
-        let title = document.forms.note.title.value;
-        let description = document.forms.note.description.value;
-
-        if (localStorage.getItem('notes') === null) {
-            localStorage.setItem('notes', JSON.stringify([]))
-        }
-
-        notes = JSON.parse(localStorage.getItem('notes'));
-        notes.push({title: title, description: description});
-
-        console.log(notes);
-        localStorage.setItem('notes', JSON.stringify(notes))
-
-        let p = document.createElement('p');
-        p.innerHTML = `${notes[notes.length - 1].title} - ${notes[notes.length - 1].description}`;
-
-        noteBook.appendChild(p);
-    };
-
-    for (const note of notes) {
-        let p = document.createElement('p');
-        p.innerHTML = `${note.title} - ${note.description}`;
-
-        noteBook.appendChild(p);
-    }
+    // // - Реализуйте записную книгу, хранящую данные в локальном хранилище.
+    // let saveNote = document.forms.note.saveNote;
+    // let notes = JSON.parse(localStorage.getItem('notes'));
+    // let noteBook = document.getElementById('notes');
+    //
+    // // localStorage.clear();
+    //
+    // saveNote.onclick = (ev) => {
+    //     ev.preventDefault();
+    //
+    //     let title = document.forms.note.title.value;
+    //     let description = document.forms.note.description.value;
+    //
+    //     if (localStorage.getItem('notes') === null) {
+    //         localStorage.setItem('notes', JSON.stringify([]))
+    //     }
+    //
+    //     notes = JSON.parse(localStorage.getItem('notes'));
+    //     notes.push({title: title, description: description});
+    //
+    //     console.log(notes);
+    //     localStorage.setItem('notes', JSON.stringify(notes))
+    //
+    //     let p = document.createElement('p');
+    //     p.innerHTML = `${notes[notes.length - 1].title} - ${notes[notes.length - 1].description}`;
+    //
+    //     noteBook.appendChild(p);
+    // };
+    //
+    // for (const note of notes) {
+    //     let p = document.createElement('p');
+    //     p.innerHTML = `${note.title} - ${note.description}`;
+    //
+    //     noteBook.appendChild(p);
+    // }
 
 
     // - Реализуйте органайзер, хранящий данные в локальном хранилище.
+    let btnTask = document.forms.taskList.saveTask;
+    let btnClear = document.forms.taskList.clearTasks;
+    let list = document.getElementById('list');
 
 
+    if (localStorage.getItem('taskList') === null) {
+        localStorage.setItem('taskList', JSON.stringify([]));
+    } else {
+        let taskList = JSON.parse(localStorage.getItem('taskList'));
 
+        //render
+        for (const listItem of taskList) {
+            let div = document.createElement('div');
+            let p = document.createElement('p');
+            p.innerHTML = listItem;
+
+            let button = document.createElement('button');
+            button.innerText = 'Delete';
+            button.onclick = () => {
+                div.style.display = 'none';
+            };
+
+            div.appendChild(p);
+            div.appendChild(button);
+
+            list.appendChild(div);
+        }
+    }
+
+    btnTask.onclick = (ev) => {
+        ev.preventDefault();
+
+        let task = document.forms.taskList.task.value;
+        let taskList = JSON.parse(localStorage.getItem('taskList'));
+        taskList.push(task);
+
+        localStorage.setItem('taskList', JSON.stringify(taskList));
+
+
+        // render
+        let div = document.createElement('div');
+        let p = document.createElement('p');
+        p.innerHTML = taskList[taskList.length - 1];
+
+        let button = document.createElement('button');
+        button.innerText = 'Delete';
+        button.onclick = () => {
+            div.style.display = 'none';
+        };
+
+        div.appendChild(p);
+        div.appendChild(button);
+
+        list.appendChild(div);
+    };
+
+    btnClear.onclick = (ev) => {
+        ev.preventDefault();
+
+        localStorage.setItem('taskList', JSON.stringify([]));
+        list.innerHTML = '';
+    };
 
 
 </script>
