@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#">
+    <textarea id="textarea"></textarea>
+</form>
+
+<br>
+<hr>
+<br>
+
+<form action="#" name="userData">
+    <input name="name" type="text" placeholder="Name"><br>
+    <textarea name="description" placeholder="Some text..."></textarea><br>
+    is 18<input name="check" type="checkbox"><br>
+    male<input name="radio" value="male" type="radio">
+    female<input name="radio" value="female" type="radio"><br>
+    <select name="select">
+        <option value="Item 1">Item 1</option>
+        <option value="Item 2">Item 2</option>
+        <option value="Item 3">Item 3</option>
+    </select>
+</form>
+
+<br>
+<hr>
+<br>
+
+
+<button id="historyBack">Back</button>
+<button id="historyNext">Next</button>
+<form action="#" name="textSaver">
+    <textarea name="textarea"></textarea>
+    <button id="btn">Save</button>
+</form>
+
+<br>
+<hr>
+<br>
+
+<div>
+    <div>
+        <form action="#" name="note">
+            <input type="text" name="title" placeholder="Title"><br>
+            <textarea name="description" placeholder="Description"></textarea><br>
+            <button id="saveNote">Note</button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+    Notes
+    <div id="notes"></div>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+
+<script>
+    // // - Дан textarea.
+    // //   В него вводится текст.
+    // //   Сделайте так, чтобы после захода на эту страницу через некоторое время, введенный текст остался в textarea.
+    // //
+    //     let textarea = document.getElementById('textarea');
+    //
+    //     setTimeout(() => {
+    //         textarea.value = localStorage.getItem('textarea');
+    //     }, 2000);
+    //
+    //     textarea.oninput = () => {
+    //         localStorage.setItem('textarea', textarea.value);
+    //     };
+    //
+    // //
+    // // - Дана форма с инпутами, текстареа, чекбоксами, радио кнопочками, селектами и тп.
+    // // Пользователь вводит какие-то данные и закрывает страницу (не факт, что он заполнил всю форму).
+    // // Сделайте так, чтобы при следующем заходе на страницу введенные им ранее данные стояли на своих местах.
+    // // Сделайте ваш скрипт как можно более универсальным.
+    //
+    //     let name = document.forms.userData.name;
+    //     let description = document.forms.userData.description;
+    //     let check = document.forms.userData.check;
+    //     let radio = document.forms.userData.radio;
+    //     let select = document.forms.userData.select;
+    //
+    //
+    //     name.oninput = () => {
+    //         localStorage.setItem('name', name.value);
+    //     };
+    //
+    //     description.oninput = () => {
+    //         localStorage.setItem('description', description.value);
+    //     };
+    //
+    //     check.onchange = () => {
+    //         localStorage.setItem('check', check.checked);
+    //     };
+    //
+    //     radio[0].onclick = () => {
+    //         localStorage.setItem('radio', 'male');
+    //     };
+    //
+    //     radio[1].onclick = () => {
+    //         localStorage.setItem('radio', 'female');
+    //     };
+    //
+    //     select.onchange = () => {
+    //         localStorage.setItem('select', select.value);
+    //     };
+    //
+    //
+    //     name.value = localStorage.getItem('name');
+    //     description.value = localStorage.getItem('description');
+    //     check.checked = localStorage.getItem('check') === 'true' ? true : false;
+    //     localStorage.getItem('radio') === 'male' ? radio[0].checked = true : radio[1].checked = true;
+    //     select.value = localStorage.getItem('select');
+    //
+    //
+    //
+    // // -Дан текстареа.
+    // //  В него можно ввести данные, затем поредактировать их, затем еще поредактировать.
+    // //  Пусть текстареа хранит историю своих изменений (даже после перезагрузки страницы).
+    // // Сверху над текстареа должны появится стрелочки, с помощью которых можно перемещаться по истории.
+    //
+    // let text = document.forms.textSaver.textarea;
+    // let btnSave  = document.forms.textSaver.btn;
+    // let btnBack = document.getElementById('historyBack');
+    // let btnNext = document.getElementById('historyNext');
+    //
+    // let history = JSON.parse(localStorage.getItem('textareaStory'));
+    // text.value = history[0];
+    //
+    //
+    // let currSave = +localStorage.getItem('currSave') || 0;
+    //
+    // //localStorage.clear();
+    //
+    // btnSave.onclick = () => {
+    //     let text = document.forms.textSaver.textarea.value;
+    //
+    //     let newVal = JSON.parse(localStorage.getItem('textareaStory'));
+    //     newVal.unshift(text);
+    //
+    //     history = JSON.parse(localStorage.getItem('textareaStory'));
+    //
+    //     localStorage.setItem('textareaStory', JSON.stringify(newVal));
+    // };
+    //
+    // btnNext.onclick = () => {
+    //     currSave = +localStorage.getItem('currSave');
+    //     history = JSON.parse(localStorage.getItem('textareaStory'));
+    //
+    //     currSave = currSave - 1 >= 0 ? --currSave : 0;
+    //     localStorage.setItem('currSave', currSave);
+    //
+    //     text.value = history[currSave];
+    // };
+    //
+    // btnBack.onclick = () => {
+    //     currSave = +localStorage.getItem('currSave');
+    //     history = JSON.parse(localStorage.getItem('textareaStory'));
+    //
+    //     currSave = currSave + 1 <= history.length - 1 ? ++currSave : history.length - 1;
+    //     localStorage.setItem('currSave', currSave);
+    //
+    //     text.value = history[currSave];
+    // };
+    //
+    // if(localStorage.getItem('textareaStory') === null){
+    //     localStorage.setItem('textareaStory', JSON.stringify([]));
+    // }
+    //
+
+    // - Реализуйте записную книгу, хранящую данные в локальном хранилище.
+    let saveNote = document.forms.note.saveNote;
+    let notes = JSON.parse(localStorage.getItem('notes'));
+    let noteBook = document.getElementById('notes');
+
+    // localStorage.clear();
+
+    saveNote.onclick = (ev) => {
+        ev.preventDefault();
+
+        let title = document.forms.note.title.value;
+        let description = document.forms.note.description.value;
+
+        if (localStorage.getItem('notes') === null) {
+            localStorage.setItem('notes', JSON.stringify([]))
+        }
+
+        notes = JSON.parse(localStorage.getItem('notes'));
+        notes.push({title: title, description: description});
+
+        console.log(notes);
+        localStorage.setItem('notes', JSON.stringify(notes))
+
+        let p = document.createElement('p');
+        p.innerHTML = `${notes[notes.length - 1].title} - ${notes[notes.length - 1].description}`;
+
+        noteBook.appendChild(p);
+    };
+
+    for (const note of notes) {
+        let p = document.createElement('p');
+        p.innerHTML = `${note.title} - ${note.description}`;
+
+        noteBook.appendChild(p);
+    }
+
+
+    // - Реализуйте органайзер, хранящий данные в локальном хранилище.
+
+
+
+
+
+</script>
+</body>
+</html>
