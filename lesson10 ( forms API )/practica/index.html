@@ -67,7 +67,7 @@
         <button id="saveTask">Add task</button>
         <button id="clearTasks">Clear all</button>
     </form>
-    <h2>Organizer</h2>
+    <h2>TODO</h2>
     <div id="list">
 
     </div>
@@ -229,66 +229,75 @@
     // - Реализуйте органайзер, хранящий данные в локальном хранилище.
     let btnTask = document.forms.taskList.saveTask;
     let btnClear = document.forms.taskList.clearTasks;
-    let list = document.getElementById('list');
+    let divToWrite = document.getElementById('list');
 
+    if(localStorage.getItem('todoList') === null){ deleteAllTasks(); }
 
-    if (localStorage.getItem('taskList') === null) {
-        localStorage.setItem('taskList', JSON.stringify([]));
-    } else {
-        let taskList = JSON.parse(localStorage.getItem('taskList'));
-
-        //render
-        for (const listItem of taskList) {
-            let div = document.createElement('div');
-            let p = document.createElement('p');
-            p.innerHTML = listItem;
-
-            let button = document.createElement('button');
-            button.innerText = 'Delete';
-            button.onclick = () => {
-                div.style.display = 'none';
-            };
-
-            div.appendChild(p);
-            div.appendChild(button);
-
-            list.appendChild(div);
-        }
-    }
+    updateTasks();
 
     btnTask.onclick = (ev) => {
         ev.preventDefault();
 
-        let task = document.forms.taskList.task.value;
-        let taskList = JSON.parse(localStorage.getItem('taskList'));
-        taskList.push(task);
-
-        localStorage.setItem('taskList', JSON.stringify(taskList));
-
-
-        // render
-        let div = document.createElement('div');
-        let p = document.createElement('p');
-        p.innerHTML = taskList[taskList.length - 1];
-
-        let button = document.createElement('button');
-        button.innerText = 'Delete';
-        button.onclick = () => {
-            div.style.display = 'none';
-        };
-
-        div.appendChild(p);
-        div.appendChild(button);
-
-        list.appendChild(div);
+        let description = document.forms.taskList.task.value;
+        let task = new Task(description, false);
+        addTask(task);
+        updateTasks();
     };
 
-    btnClear.onclick = (ev) => {
-        ev.preventDefault();
-
-        localStorage.setItem('taskList', JSON.stringify([]));
-        list.innerHTML = '';
+    btnClear.onclick = () => {
+        deleteAllTasks();
+        updateTasks();
     };
+
+
+    function addTask(task){
+        let tasks = JSON.parse(localStorage.getItem('todoList'));
+        tasks.push(task);
+
+        localStorage.setItem('todoList', JSON.stringify(tasks));
+    }
+
+    function deleteTask(index) {
+        let tasks = JSON.parse(localStorage.getItem('todoList'));
+        tasks.splice(index, 1);
+
+        localStorage.setItem('todoList', JSON.stringify(tasks));
+    }
+
+    function deleteAllTasks() {
+        localStorage.setItem('todoList', JSON.stringify([]));
+    }
+
+    function updateTasks() {
+        let tasks = JSON.parse(localStorage.getItem('todoList'));
+        divToWrite.innerHTML = ''; // clear
+
+        if(tasks.length > 0) {
+            tasks.forEach((task, index) => {
+                let div = document.createElement('div');
+                div.innerText = task.description;
+
+                let btn = document.createElement('button');
+                btn.innerText = 'Done';
+
+                btn.onclick = () => {
+                    deleteTask(index);
+                    updateTasks();
+                };
+
+
+                div.appendChild(btn);
+                divToWrite.appendChild(div);
+            });
+        }
+    }
+
+    class Task {
+        constructor(description, done) {
+            this.description = description;
+            this.done = done;
+        }
+    }
 
 
 </script>
