@@ -85,6 +85,16 @@
     </form>
 </div>
 
+<div id="elems">
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+    </ul>
+</div>
+
 
 <script>
     // 6 Есть список сообщений. Добавьте каждому сообщению по кнопке для его скрытия.
@@ -151,29 +161,41 @@
     // НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
     // Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
 
-    // function surfDOM(htmlElement){
-    //     let backBtn = document.createElement('button');
-    //     let nextBtn = document.createElement('button');
-    //
-    //     let arrElements = htmlElement.childNodes;
-    //     let currPos = 0;
-    //
-    //     backBtn.onclick = () => {
-    //         if(currPos - 1 > 0){
-    //             currPos--;
-    //         }
-    //         else{
-    //             currPos = arrElements.length;
-    //         }
-    //
-    //         console.log(arrElements[currPos]);
-    //     };
-    //
-    //     document.body.appendChild(backBtn);
-    // }
-    //
+    function surfDOM(htmlElement){
+        let backBtn = document.createElement('button');
+        backBtn.innerText = 'Back';
+        let nextBtn = document.createElement('button');
+        nextBtn.innerText = 'Next';
+
+        document.body.appendChild(backBtn);
+        document.body.appendChild(nextBtn);
+
+
+        let arrChilds = htmlElement.getElementsByTagName('*'); // give all elements in this element
+
+        let currPos = 0;
+        //arrChilds[currPos].style.background = 'red';
+
+
+        backBtn.onclick = (ev) => {
+            if(currPos - 1 > 0) {
+                currPos--;
+                console.log(arrChilds[currPos]);
+            }
+        };
+
+        nextBtn.onclick = (ev) => {
+            if(currPos + 1 < arrChilds.length) {
+                currPos++;
+                console.log(arrChilds[currPos]);
+            }
+        };
+    }
+
     // let [body]= document.getElementsByTagName('body');
-    // surfDOM(body);
+     let elems = document.getElementById('elems');
+
+    surfDOM(elems);
 
     // 9 Створити 4 инпута. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк, четвертий -кнопка
     // при натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
