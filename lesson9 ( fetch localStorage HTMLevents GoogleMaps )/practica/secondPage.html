@@ -151,6 +151,29 @@
     // НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
     // Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
 
+    // function surfDOM(htmlElement){
+    //     let backBtn = document.createElement('button');
+    //     let nextBtn = document.createElement('button');
+    //
+    //     let arrElements = htmlElement.childNodes;
+    //     let currPos = 0;
+    //
+    //     backBtn.onclick = () => {
+    //         if(currPos - 1 > 0){
+    //             currPos--;
+    //         }
+    //         else{
+    //             currPos = arrElements.length;
+    //         }
+    //
+    //         console.log(arrElements[currPos]);
+    //     };
+    //
+    //     document.body.appendChild(backBtn);
+    // }
+    //
+    // let [body]= document.getElementsByTagName('body');
+    // surfDOM(body);
 
     // 9 Створити 4 инпута. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк, четвертий -кнопка
     // при натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
